@@ -1,23 +1,23 @@
 # GEE-Land-Cover-Classification
 Using GEE to estimate agricultural land in Brazil
-//Let's centre the map view over our ROI
+  //Let's centre the map view over our ROI
 Map.centerObject(initial, 7);
-//DEM scene 
+  //DEM scene 
 var demelevation = dem.select('elevation');//elevation data
-//print(demelevation)
+  //print(demelevation)
 var slope = ee.Terrain.slope(demelevation);//slope of the landscape
-//print(slope)
+  //print(slope)
 
-//sentinel2
-// Now select your image type!
+  //sentinel2
+  // Now select your image type!
 var collection = ee.ImageCollection('COPERNICUS/S2_SR') // searches all sentinel 2 imagery pixels...
   .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", 5)) // ...filters on the metadata for pixels less than 10% cloud
   .filterDate('2018-09-01' ,'2019-06-30') //... chooses only pixels between the dates you define here
   .filterBounds(initial) // ... that are within your aoi
 //print(collection) // this generates a JSON list of the images (and their metadata) which the filters found in the right-hand window.
   
-/// so far this is finding all the images in the collection which meets the critera- the latest on top. To get a nice blended-looking mosaic, 
-// try some of the tools for 'reducing' these to one pixel (or bands of pixels in a layer stack). 
+  /// so far this is finding all the images in the collection which meets the critera- the latest on top. To get a nice blended-looking mosaic, 
+  // try some of the tools for 'reducing' these to one pixel (or bands of pixels in a layer stack). 
 
 
 var medianpixels = collection.median() // This finds the median value of all the pixels which meet the criteria. 
