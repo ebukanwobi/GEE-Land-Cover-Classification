@@ -1,7 +1,7 @@
 # GEE-Land-Cover-Classification
 
-Using GEE to estimate agricultural land in Brazil
-  //Let's centre the map view over our ROI
+//Using GEE to estimate agricultural land in Brazil
+  //centre the map view over ROI
 Map.centerObject(ROI, 7);
   //DEM scene 
 var demelevation = SRTMDEM.select('elevation');//elevation data from SRTM Digital elevation model (DEM)
